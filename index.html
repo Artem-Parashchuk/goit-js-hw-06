@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Home Work 6</title>
+        <style>
+            body {
+                max-width: 1200px;
+                margin: 0 auto;
+                background-color: #f3f3f3;
+            }
+            span {
+                background-color: rgb(193, 193, 193);
+            }
+            code {
+                display: block;
+                background-color: #e6e6e6;
+                line-height: 1.5;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Домашнє завдання №6</h1>
+        <section>
+            <h2>Задача 1. Акаунт користувача</h2>
+            <p>
+                Перед звільненням розробник зламав вихідний код управління
+                акаунтами користувачів нашого сервісу доставки їжі. Виконай
+                рефакторинг методів об'єкта <span>customer</span>, розставивши
+                відсутні <span>this</span>
+                під час звернення до властивостей об'єкта.
+            </p>
+            <p>
+                Використай цей стартовий код і виконай рефакторинг. Після
+                оголошення об'єкта ми додали виклики методів. У консоль будуть
+                виведені результати їх роботи. Будь ласка, нічого там не змінюй.
+            </p>
+
+            <pre>
+            <code>
+                const customer = {
+                    username: "Mango",
+                    balance: 24000,
+                    discount: 0.1,
+                    orders: ["Burger", "Pizza", "Salad"],
+                    // Change code below this line
+                    getBalance() {
+                      return balance;
+                    },
+                    getDiscount() {
+                      return discount;
+                    },
+                    setDiscount(value) {
+                      discount = value;
+                    },
+                    getOrders() {
+                      return orders;
+                    },
+                    addOrder(cost, order) {
+                      balance -= cost - cost * discount;
+                      orders.push(order);
+                    },
+                    // Change code above this line
+                  };
+                  
+                  customer.setDiscount(0.15);
+                  console.log(customer.getDiscount()); // 0.15
+                  customer.addOrder(5000, "Steak");
+                  console.log(customer.getBalance()); // 19750
+                  console.log(customer.getOrders()); // ["Burger", "Pizza", "Salad", "Steak"]                    
+            </code>
+        </pre>
+        </section>
+
+        <section>
+            <h2>Задача 2. Склад</h2>
+            <p>
+                Створи клас <span>Storage</span>, який створюватиме об'єкти для
+                управління складом товарів. Клас очікує лише один аргумент —
+                початковий масив товарів, який записується до створеного об'єкта
+                в приватну властивість <span>items</span>.
+            </p>
+            <p>Оголоси наступні методи класу:</p>
+            <ul>
+                <li>
+                    <p>
+                        <span>getItems()</span> — повертає масив поточних
+                        товарів у приватній властивості <span>items</span>.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <span>addItem(newItem)</span> — приймає новий товар
+                        <span>newItem</span> і додає його до масиву товарів у
+                        приватну властивість <span>items</span> об'єкта.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <span>removeItem(itemToRemove)</span> — приймає рядок з
+                        назвою товару itemToRemove і видаляє його з масиву
+                        товарів у приватній властивості
+                        <span>items</span> об'єкта.
+                    </p>
+                </li>
+            </ul>
+
+            <p>
+                Візьми код нижче з ініціалізацією екземпляра й викликами методів
+                і встав його після оголошення класу для перевірки коректності
+                роботи. У консоль будуть виведені результати їх роботи. Будь
+                ласка, нічого там не змінюй.
+            </p>
+
+            <pre>
+                <code>
+                    const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
+                    console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
+                    storage.addItem("Droid");
+                    console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
+                    storage.removeItem("Prolonger");
+                    console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
+                </code>
+            </pre>
+        </section>
+
+        <section>
+            <h2>Задача 3. Конструктор рядків</h2>
+            <p>
+                Напиши клас <span>StringBuilder</span>, який приймає один
+                параметр <span>initialValue</span> — довільний рядок, який
+                записується у приватну властивість <span>value</span> об'єкта,
+                що створюється.
+            </p>
+            <p>Оголоси наступні методи класу:</p>
+            <ul>
+                <li>
+                    <p>
+                        <span>getValue()</span> — повертає поточне значення
+                        приватної властивості <span>value</span>.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <span>padEnd(str)</span> — отримує параметр
+                        <span>str</span> (рядок) і додає його в кінець значення
+                        приватної властивості <span>value</span> об'єкта, який
+                        викликає цей метод.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <span>padStart(str)</span> — отримує параметр
+                        <span>str</span> (рядок) і додає його на початок
+                        значення приватної властивості
+                        <span>value</span> об'єкта, який викликає цей метод.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <span>padBoth(str)</span> — отримує параметр
+                        <span>str</span> (рядок) і додає його на початок і в
+                        кінець значення приватної властивості
+                        <span>value</span> об'єкта, який викликає цей метод.
+                    </p>
+                </li>
+            </ul>
+            <p>
+                Візьми код нижче з ініціалізацією екземпляра й викликами методів
+                і встав його після оголошення класу для перевірки коректності
+                роботи. У консоль будуть виведені результати їх роботи. Будь
+                ласка, нічого там не змінюй.
+            </p>
+
+            <pre>
+                <code>
+                    const builder = new StringBuilder(".");
+                    console.log(builder.getValue()); // "."
+                    builder.padStart("^");
+                    console.log(builder.getValue()); // "^."
+                    builder.padEnd("^");
+                    console.log(builder.getValue()); // "^.^"
+                    builder.padBoth("=");
+                    console.log(builder.getValue()); // "=^.^="
+
+                </code>
+            </pre>
+        </section>
+
+        <script type="module" src="./js/task-1.js"></script>
+        <script type="module" src="./js/task-2.js"></script>
+        <script type="module" src="./js/task-3.js"></script>
+    </body>
+</html>
